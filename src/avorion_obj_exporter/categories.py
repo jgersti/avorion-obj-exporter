@@ -6,6 +6,7 @@ class Material:
     name: str
     color: str
 
+
 MATERIALS = (
     Material(0, 'Iron', '#ffb380'),
     Material(1, 'Titanium', '#ffffff'),
@@ -16,6 +17,7 @@ MATERIALS = (
     Material(6, 'Avorion', '#ff2626'),
 )
 
+
 SHAPES = {
     'Edge': (21, 100, 104, 151, 171, 181, 185, 191, 511, 521, 601, 651, 701),
     'Corner 1': (101, 105, 152, 172, 182, 186, 192, 512, 522, 702),
@@ -25,6 +27,7 @@ SHAPES = {
     'Twisted Corner 2': (109, 111, 156, 176, 196, 198, 200, 516, 526, 706),
     'Flat Corner': (112, 113, 157, 177, 201, 202, 203, 517, 527, 707),
 }
+
 
 CATEGOERIES = {
     'Hull':             (1, 2, 100, 101, 102, 103, 108, 109, 112),

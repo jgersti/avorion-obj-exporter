@@ -9,6 +9,7 @@ except:
 from pathlib import Path
 from dataclasses import dataclass
 
+
 @dataclass
 class Block:
     lower: np.ndarray
@@ -17,6 +18,7 @@ class Block:
     type: int
     material: int
     color: str
+
 
 def _blockStats(block, legacy=False):
     stats = {}
@@ -37,6 +39,7 @@ def _blockStats(block, legacy=False):
         raise ValueError('invalid tag.')
 
     return stats
+
 
 def readShipXML (file):
     print(f'Reading File: {file}')

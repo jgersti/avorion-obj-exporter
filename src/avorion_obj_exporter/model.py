@@ -2,8 +2,7 @@ import vtk
 import numpy as np
 import pyvista as pv
 
-from avorion_viewer.shapes import getCell
-from avorion_viewer.progress import printProgressBar
+from avorion_obj_exporter.shapes import getCell
 
 
 def _getColors(blocks):
@@ -53,7 +52,6 @@ def createModel(blocks, merge=False, tolerance=1e-6):
     types = []
 
     n = len(blocks)
-    printProgressBar(0, n, empty=' ', length=80, prefix='Build Model', decimals=0)
     for i, _block in enumerate(blocks):
         _type, _indices, _points = getCell(_block)
         pIndices = insert(points, _points, _indices)
@@ -69,7 +67,6 @@ def createModel(blocks, merge=False, tolerance=1e-6):
         cells.extend(np.concatenate(cell))
         offsets.append(1 + cell[0][0] + (offsets[-1] if offsets else 0))
         types.append(_type)
-        printProgressBar(i+1, n, empty=' ', length=80, prefix='Build Model', decimals=0)
 
     model = pv.UnstructuredGrid(np.asarray(offsets), np.asarray(cells), np.asarray(types), np.asarray(points))
 

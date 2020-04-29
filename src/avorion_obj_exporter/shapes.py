@@ -1,5 +1,7 @@
 import numpy as np
+
 from avorion_obj_exporter.categories import SHAPES
+
 
 def _rotateReference(points, orientation):
     # np.any((a < 1) | (a > 5))
@@ -22,6 +24,7 @@ def _rotateReference(points, orientation):
 
     return np.einsum('ij,...j->...i', R, points-o) + o
 
+
 def _getHexahedron(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
                       [0, 0, 1],
@@ -37,6 +40,7 @@ def _getHexahedron(lower, upper, orientation):
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '12', indices, points
 
+
 def _getWedge(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
                       [1, 0, 0],
@@ -49,6 +53,7 @@ def _getWedge(lower, upper, orientation):
     points = _rotateReference(ref, orientation)
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '13', indices, points
+
 
 def _getPyramid1(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
@@ -75,6 +80,7 @@ def _getPyramid2(lower, upper, orientation):
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '14', indices, points
 
+
 def _getTetra1(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
                       [1, 0, 0],
@@ -85,6 +91,7 @@ def _getTetra1(lower, upper, orientation):
     points = _rotateReference(ref, orientation)
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '10', indices, points
+
 
 def _getTetra2(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
@@ -97,6 +104,7 @@ def _getTetra2(lower, upper, orientation):
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '10', indices, points
 
+
 def _getTetra3(lower, upper, orientation):
     ref = np.asarray([[1, 0, 0],
                       [0, 0, 1],
@@ -107,6 +115,7 @@ def _getTetra3(lower, upper, orientation):
     points = _rotateReference(ref, orientation)
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '10', indices, points
+
 
 def _getPolyhedron(lower, upper, orientation):
     ref = np.asarray([[0, 0, 0],
@@ -127,6 +136,7 @@ def _getPolyhedron(lower, upper, orientation):
     points = _rotateReference(ref, orientation)
     points = np.einsum('...i,i->...i', points, upper-lower) + lower
     return '42', indices, points
+
 
 def getCell(block):
     index = block['type']

@@ -3,7 +3,8 @@ from appdirs import user_data_dir
 
 from avorion_obj_exporter.model import createModel
 from avorion_obj_exporter.reader import readShipXML
-from avorion_obj_exporter.writer import *
+from avorion_obj_exporter.writer import writePLY, writeSimpleOBJ, writeSTL, writeVTK
+
 
 def get_program_parameters():
     import argparse
@@ -47,6 +48,7 @@ def main():
         writeVTK(model, args.output)
     else:
         raise ValueError(f'Invalid format ({args.format}).')
+
 
 if __name__ == "__main__":
     main()
