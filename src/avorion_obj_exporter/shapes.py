@@ -6,8 +6,7 @@ from avorion_obj_exporter.categories import SHAPES
 def _rotateReference(points, orientation):
     # np.any((a < 1) | (a > 5))
     if np.any((orientation < 0) | (orientation > 5)):
-        print(f'Invalid orientation: {orientation}')
-        return points
+       raise ValueError(f'Invalid orientation: {orientation}')
 
     o = np.asarray([0.5, 0.5,0.5])
     R = np.zeros((3,3))

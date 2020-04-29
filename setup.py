@@ -8,7 +8,7 @@ from pathlib import Path
 
 name    = 'avorion-obj-exporter'
 module  = 'avorion_obj_exporter'
-version = '0.1.0'
+version = '0.1.1'
 
 requirements = ['appdirs', 'argparse', 'pathlib', 'numpy', 'vtk', 'pyvista']
 
