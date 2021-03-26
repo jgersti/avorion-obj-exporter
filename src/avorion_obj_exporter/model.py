@@ -68,8 +68,10 @@ def createModel(blocks, merge=False, tolerance=1e-6):
         offsets.append(1 + cell[0][0] + (offsets[-1] if offsets else 0))
         types.append(_type)
 
-    model = pv.UnstructuredGrid(np.asarray(offsets), np.asarray(cells), np.asarray(types), np.asarray(points))
-
+    if pv._vtk.VTK9:
+        model = pv.UnstructuredGrid(np.asarray(cells), np.asarray(types), np.asarray(points))
+    else:
+        model = pv.UnstructuredGrid(np.asarray(offsets), np.asarray(cells), np.asarray(types), np.asarray(points))
     data = model.cell_arrays
     data['color'] = _getColors(blocks)
     data['material'] = _getMaterials(blocks)
